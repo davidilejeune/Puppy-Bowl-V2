@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export function AllPlayers() {
 
@@ -11,10 +11,10 @@ export function AllPlayers() {
 
             try {
 
-                const response = await fetch(`https://fsa-puppy-bowl.herokuapp.com/api/2306-FTB-ET-WEB-FT`)
+                const response = await fetch(`https://fsa-puppy-bowl.herokuapp.com/api/2306-FTB-ET-WEB-FT/players`)
                 const data = await response.json()
 
-                setAllPuppies(data.results)
+                setAllPuppies(data)
 
             } catch (err) {
                 console.log('An error occurred while fetching Puppies', err)
@@ -31,11 +31,12 @@ export function AllPlayers() {
 
     return <>
 
-    { AllPlayers.map((p, index) => 
+    { allPuppies.map((p, index) => 
         <div key={index} 
             className='puppies'
-            onClick={() => navigate(`/${p.name}`)}>
+            onClick={() => navigate(`/${p.id}`)}>
            <h1>{p.name}</h1>
+           <img src={p.imageUrl}/>
         </div>)
     }
 </>

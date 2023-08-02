@@ -9,7 +9,7 @@ export function SinglePlayer() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch(`https://fsa-puppy-bowl.herokuapp.com/api/2306-FTB-ET-WEB-FT/${id}`)
+            const response = await fetch(`https://fsa-puppy-bowl.herokuapp.com/api/2306-FTB-ET-WEB-FT/players/${id}`)
             const data = await response.json()
 
             setPuppies(cleanPuppyData(data))
@@ -35,13 +35,12 @@ export function SinglePlayer() {
     console.log('Page Loads')
     return <div className='singlePuppy'>
         <h1>{puppies.name}</h1>
-        <img src={puppies.img}/>
+        <img src={puppies.imageUrl}/>
         <h3>{puppies.breed}</h3>
         <h3>{puppies.status}</h3>
-        <img src={pokemon.img}/>
         <ul>{
             puppies.name &&
-            puppies.image
+            puppies.imageUrl
         }</ul>
 
         <Link to='/'><button>Go Back</button></Link>
